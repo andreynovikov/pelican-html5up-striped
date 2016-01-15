@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title|striptags }}{% endblock %}
+{% block head %}
+{{ super() }}
+{% if article.description %}
+<meta name="description" content="{{article.description}}" />
+{% endif %}
+{% for tag in article.tags %}
+<meta name="tags" content="{{tag}}" />
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+<article class="box post post-excerpt">
+    <header>
+        <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark">{{ article.title }}</a></h2>
+        {% if article.authors %}
+        <address class="author">
+            By {% for author in article.authors %}
+            <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+            {% endfor %}
+        </address>
+        {% endif %}
+        <div>
+           <i class="fa fa-folder"></i>&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+           {% if article.tags %}<i class="fa fa-tags"></i>&nbsp;{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a> {% endfor %}{% endif %}
+        </div>
+    </header>
+    <div class="info">
+        <!--
+            Note: The date should be formatted exactly as it's shown below. In particular, the
+            "least significant" characters of the month should be encapsulated in a <span>
+            element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+            Oh, and if you don't need a date for a particular page or post you can simply delete
+            the entire "date" element.
+          -->
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+            <span class="date"><span class="month">{{ article.date.strftime('%b') }}</span> <span class="day">{{ article.date.strftime('%d') }}</span><span class="year">, {{ article.date.strftime('%Y') }}</span></span>
+        </time>
+        <ul class="stats">
+            {% if DISQUS_SITENAME and SITEURL %}
+            <li><a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" class="icon fa-comment">0</a></li>
+            {% endif %}
+            <!--
+            <li><a href="#" class="icon fa-heart">32</a></li>
+            <li><a href="#" class="icon fa-twitter">64</a></li>
+            <li><a href="#" class="icon fa-facebook">128</a></li>
+            -->
+        </ul>
+    </div>
+
+    {{ article.content }}
+
+    {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
+        <h3>Comments</h3>
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+              this.page.url = '{{ SITEURL }}/{{ article.url }}';
+              this.page.identifier = '{{ article.url }}';
+            };
+            (function() {
+              var d = document, s = d.createElement('script');
+              s.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              s.async = true;
+              (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <script id="dsq-count-scr" src="//{{ DISQUS_SITENAME }}.disqus.com/count.js" async></script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    {% endif %}
+</article>
+{% endblock %}

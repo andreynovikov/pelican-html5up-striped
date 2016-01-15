@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<!--
+    Striped by HTML5 UP
+    html5up.net | @n33co
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  -->
+<html lang="{{ DEFAULT_LANG }}">
+    <head>
+        {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="{{ SITEURL }}/theme/assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="{{ SITEURL }}/theme/assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="{{ SITEURL }}/theme/assets/css/ie8.css" /><![endif]-->
+        {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+        {% endif %}
+        {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_ATOM and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+        {% endif %}
+        {% if CATEGORY_FEED_RSS and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+        {% endif %}
+        {% if TAG_FEED_ATOM and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+        {% endif %}
+        {% if TAG_FEED_RSS and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+        {% endif %}
+        {% endblock head %}
+    </head>
+    <body>
+
+        <!-- Content -->
+        <div id="content">
+            <div class="inner">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+
+            <!-- Avatar -->
+
+            <!-- Logo -->
+            <h1 id="logo">{% if PROFILE_IMG_URL %}<img id="avatar" src="{{ PROFILE_IMG_URL }}"/>{% endif %}<a href="{{ SITEURL }}/">{{ SITENAME|upper }}{% if SITESUBTITLE %} <span>{{ SITESUBTITLE }}</span>{% endif %}</a></h1>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    {% for title, link in MENUITEMS %}
+                    <li><a href="{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                    {% if DISPLAY_CATEGORIES_ON_MENU %}
+                    {% for cat, null in categories %}
+                    <li{% if cat == category %} class="current"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                    {% endfor %}
+                    {% endif %}
+                    {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for p in pages %}
+                    <li{% if p == page %} class="current"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <!-- Search -->
+            <!--
+            <section class="box search">
+                <form method="post" action="#">
+                    <input type="text" class="text" name="search" placeholder="Search" />
+                </form>
+            </section>
+            -->
+
+            {% if DISPLAY_TAGS_ON_SIDEBAR is not defined %}
+            {% set DISPLAY_TAGS_ON_SIDEBAR = True %}
+            {% endif %}
+            {% if 'tag_cloud' in PLUGINS and DISPLAY_TAGS_ON_SIDEBAR %}
+            <!-- Tags -->
+            <section class="box text-style1">
+                <div class="inner">
+                    <p>
+                        <strong>Tags:</strong>
+                        {% for tag in tag_cloud %}
+                        <a class="tag-{{ tag.1 }}" href="{{ SITEURL }}/{{ tag.0.url }}">{{ tag.0 }}</a>
+                        {% endfor %}
+                    </p>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Recent Posts -->
+            <!--
+            <section class="box recent-posts">
+                <header>
+                    <h2>Recent Posts</h2>
+                </header>
+                <ul>
+                    <li><a href="#">Lorem ipsum dolor</a></li>
+                    <li><a href="#">Feugiat nisl aliquam</a></li>
+                    <li><a href="#">Sed dolore magna</a></li>
+                    <li><a href="#">Malesuada commodo</a></li>
+                    <li><a href="#">Ipsum metus nullam</a></li>
+                </ul>
+            </section>
+            -->
+
+            <!-- Recent Comments -->
+            <!--
+            <section class="box recent-comments">
+                <header>
+                    <h2>Recent Comments</h2>
+                </header>
+                <ul>
+                    <li>case on <a href="#">Lorem ipsum dolor</a></li>
+                    <li>molly on <a href="#">Sed dolore magna</a></li>
+                    <li>case on <a href="#">Sed dolore magna</a></li>
+                </ul>
+            </section>
+            -->
+
+            <!-- Calendar -->
+            <!--
+            <section class="box calendar">
+                <div class="inner">
+                    <table>
+                        <caption>July 2014</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" title="Monday">M</th>
+                                <th scope="col" title="Tuesday">T</th>
+                                <th scope="col" title="Wednesday">W</th>
+                                <th scope="col" title="Thursday">T</th>
+                                <th scope="col" title="Friday">F</th>
+                                <th scope="col" title="Saturday">S</th>
+                                <th scope="col" title="Sunday">S</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="pad"><span>&nbsp;</span></td>
+                                <td><span>1</span></td>
+                                <td><span>2</span></td>
+                                <td><span>3</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>4</span></td>
+                                <td><span>5</span></td>
+                                <td><a href="#">6</a></td>
+                                <td><span>7</span></td>
+                                <td><span>8</span></td>
+                                <td><span>9</span></td>
+                                <td><a href="#">10</a></td>
+                            </tr>
+                            <tr>
+                                <td><span>11</span></td>
+                                <td><span>12</span></td>
+                                <td><span>13</span></td>
+                                <td class="today"><a href="#">14</a></td>
+                                <td><span>15</span></td>
+                                <td><span>16</span></td>
+                                <td><span>17</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>18</span></td>
+                                <td><span>19</span></td>
+                                <td><span>20</span></td>
+                                <td><span>21</span></td>
+                                <td><span>22</span></td>
+                                <td><a href="#">23</a></td>
+                                <td><span>24</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">25</a></td>
+                                <td><span>26</span></td>
+                                <td><span>27</span></td>
+                                <td><span>28</span></td>
+                                <td class="pad" colspan="3"><span>&nbsp;</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            -->
+
+            {% if LINKS %}
+            <!-- Blogroll Links -->
+            <section class="box blogroll">
+                <header>
+                    <h2>{{ LINKS_WIDGET_NAME | default('Links') }}</h2>
+                </header>
+                <ul>
+                    {% for name, link in LINKS %}
+                    <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            {% if SOCIAL or FEED_ALL_ATOM or FEED_ALL_RSS %}
+            <!-- Social Links -->
+            <section class="box social-links">
+                <header>
+                    <h2>{{ SOCIAL_WIDGET_NAME | default('Social') }}</h2>
+                </header>
+                <ul>
+                    {% if FEED_ALL_ATOM %}
+                    <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                    {% endif %}
+                    {% if FEED_ALL_RSS %}
+                    <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate">rss feed</a></li>
+                    {% endif %}
+
+                    {% for name, link in SOCIAL %}
+                    {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
+                    {% if name_sanitized in ['youtube', 'flickr', 'spotify', 'stack-overflow', 'weibo'] %}
+                    {% set iconattributes = 'fa fa-' ~ name_sanitized %}
+                    {% else %}
+                    {% set iconattributes = 'fa fa-' ~ name_sanitized ~ '-square' %}
+                    {% endif %}
+                    <li><i class="{{ iconattributes }}"></i> <a href="{{ link }}">{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+
+            <!-- Copyright -->
+            <ul id="copyright">
+                <li>&copy; {{ COPYRIGHT }}</li>
+                <li>Powered by <a href="http://getpelican.com/">Pelican</a></li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ SITEURL }}/theme/assets/js/jquery.min.js"></script>
+        <script src="{{ SITEURL }}/theme/assets/js/skel.min.js"></script>
+        <script src="{{ SITEURL }}/theme/assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="{{ SITEURL }}/theme/assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="{{ SITEURL }}/theme/assets/js/main.js"></script>
+
+    </body>
+    </html>

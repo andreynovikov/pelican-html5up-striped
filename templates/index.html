@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+{% if articles %}
+{% for article in articles_page.object_list %}
+<article class="box post post-excerpt">
+    <header>
+        <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark">{{ article.title }}</a></h2>
+        {% if article.authors %}
+        <address class="author">
+            By {% for author in article.authors %}
+            <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+            {% endfor %}
+        </address>
+        {% endif %}
+        <div>
+           <i class="fa fa-folder"></i>&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+           {% if article.tags %}<i class="fa fa-tags"></i>&nbsp;{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a> {% endfor %}{% endif %}
+        </div>
+    </header>
+    <div class="info">
+        <!--
+            Note: The date should be formatted exactly as it's shown below. In particular, the
+            "least significant" characters of the month should be encapsulated in a <span>
+            element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+            Oh, and if you don't need a date for a particular page or post you can simply delete
+            the entire "date" element.
+          -->
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+            <span class="date"><span class="month">{{ article.date.strftime('%b') }}</span> <span class="day">{{ article.date.strftime('%d') }}</span><span class="year">, {{ article.date.strftime('%Y') }}</span></span>
+        </time>
+        <ul class="stats">
+            {% if DISQUS_SITENAME and SITEURL %}
+            <li><a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" class="icon fa-comment">0</a></li>
+            {% endif %}
+            <!--
+            <li><a href="#" class="icon fa-heart">32</a></li>
+            <li><a href="#" class="icon fa-twitter">64</a></li>
+            <li><a href="#" class="icon fa-facebook">128</a></li>
+            -->
+        </ul>
+    </div>
+    {% if article.image %}
+    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" class="image featured"><img src="{{ article.image }}" alt="" /></a>
+    {% endif %}
+    {% if article.summary %}
+    {{ article.summary }}
+
+    {% if article.summary != article.content %}
+    <div><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></div>
+    {% endif %}
+    {% endif %}
+</article>
+{% endfor %}
+
+{% if DISQUS_SITENAME and SITEURL %}
+<script id="dsq-count-scr" src="//{{ DISQUS_SITENAME }}.disqus.com/count.js" async></script>
+{% endif %}
+{% endif %}
+
+{% if articles_page.has_other_pages() %}
+{% include 'pagination.html' %}
+{% endif %}
+
+{% endblock content %}
