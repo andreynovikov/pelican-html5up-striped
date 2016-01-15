@@ -1,0 +1,1 @@
+This is the modification of the [original HTML5UP Striped theme](http://html5up.net/striped) to be used as (Pelican)[http://getpelican.com/] theme. It is used on my (personal site)[http://andreynovikov.info/]. It can be freely used with respect to original HTML5UP license.
