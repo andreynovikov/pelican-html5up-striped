@@ -2573,7 +2573,7 @@
 					margin: 0 0 0.75em 0;
 				}
 
-					.box.post .info .date .year,
+					.box.post .info .date .year span,
 					.box.post .info .date .month span {
 						display: none;
 					}
@@ -2585,6 +2585,12 @@
 						font-weight: 700;
 						color: #1b252a;
 					}
+
+                    .box.post .info .date .year {
+                        display: block;
+                        margin: 0.25em 0 0 0;
+                        font-size: 0.5em;
+                    }
 
 				.box.post .info .stats {
 					position: relative;
@@ -2829,7 +2835,7 @@
 						display: inline;
 					}
 
-						.box.post .info .date .year, .box.post .info .date .month span {
+						.box.post .info .date .x-year, .box.post .info .date .month span {
 							display: none;
 						}
 
