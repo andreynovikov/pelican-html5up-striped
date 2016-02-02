@@ -8,8 +8,8 @@
         </address>
         {% endif %}
         <div>
-           <i class="fa fa-folder"></i>&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-           {% if article.tags %}<i class="fa fa-tags"></i>&nbsp;{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a> {% endfor %}{% endif %}
+           <i class="fa fa-folder"></i>&nbsp;<a class="folder" href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+           {% if article.tags %}<i class="fa fa-tags"></i>&nbsp;{% for tag in article.tags %}<span class="tag"><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a></span> {% endfor %}{% endif %}
         </div>
     </header>
     <div class="info">
