@@ -37,3 +37,34 @@
     {% endif %}
 </article>
 {% endblock %}
+
+{% block script_hooks %}
+<style>
+    article p {
+      position: relative;
+    }
+    article .img-caption {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      text-shadow: 0px 0px 1px #FFF, 1px 1px 1px #FFF, 1px -1px 1px #FFF, -1px 1px 1px #FFF, -1px -1px 1px #FFF;
+    }
+</style>
+<script>
+// display image caption on top of image
+$("article img").each(function() {
+  var imageCaption = $(this).attr("alt");
+  if (imageCaption != '') {
+    $(this).load(function() {
+      var imgWidth = $(this).width() - 5;
+      var imgHeight = $(this).height();
+      var positionTop = imgHeight - 26;
+      $("<span class='img-caption'>" + imageCaption + "</span>").css({
+          "top": positionTop + "px",
+          "width": imgWidth + "px"
+      }).insertAfter(this);
+    });
+  }
+});
+</script>
+{% endblock %}

@@ -253,6 +253,7 @@
         <script src="{{ SITEURL }}/theme/assets/js/util.js"></script>
         <!--[if lte IE 8]><script src="{{ SITEURL }}/theme/assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="{{ SITEURL }}/theme/assets/js/main.js"></script>
+        {% block script_hooks %}{% endblock %}
         {% include 'analytics.html' %}
     </body>
 </html>
