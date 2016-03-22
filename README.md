@@ -6,5 +6,6 @@ Theme features and enhancements:
 2. Support for awatar specified by `PROFILE_IMG_URL` configuration setting.
 3. Support for Disqus, `DISQUS_SITENAME` should be set in configuration.
 4. Support for Google Analytics, `GOOGLE_ANALYTICS` should be set in configuration.
-5. Articles can contain header image which is shown on index pages and ignored in article. Image is specified with `image` file metadata.
-6. Pages can redirect to other locations. Useful if you want to add some external link to main rubricator. Location is specified with `redirect` file metadata.
+5. Support for Google site verification by HTML tag, `GOOGLE_SITE_VERIFICATION` should be set in configuration.
+6. Articles can contain header image which is shown on index pages and ignored in article. Image is specified with `image` file metadata.
+7. Pages can redirect to other locations. Useful if you want to add some external link to main rubricator. Location is specified with `redirect` file metadata.
