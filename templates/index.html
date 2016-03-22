@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% if GOOGLE_SITE_VERIFICATION %}
+        <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}" />
+{% endif %}
+{% endblock %}
 {% block content %}
 {% if articles %}
 {% for article in articles_page.object_list %}
