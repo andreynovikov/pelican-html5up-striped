@@ -8,13 +8,22 @@
 {% block content %}
 {% if articles %}
 {% for article in articles_page.object_list %}
-<article class="box post post-excerpt">
+<article id="{{ article.slug }}" class="box post post-excerpt">
     {% include 'article_header.html' %}
     {% if article.image %}
-    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><img class="featured" src="{{ article.image }}" alt="" /></a>
+    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><img class="featured" src="{{ article.image }}" alt="" {% if article.imageposition %}style="object-position: 50% {{article.imageposition}}" {% endif %}/></a>
     {% endif %}
     {% if article.summary %}
     {{ article.summary }}
+    {% if not article.image and article.imageposition %}
+    <script>
+        // http://codepen.io/chrisnager/pen/XJRRwo?editors=110
+        // We use vanilla js here because jQuery is not loaded yet
+        document.addEventListener("DOMContentLoaded", function() {
+            $("article#{{ article.slug }} img:first-child").css("object-position", "50% {{article.imageposition}}");
+        });
+    </script>
+    {% endif %}
 
     {% if article.summary != article.content %}
     <div><a href="{{ SITEURL }}/{{ article.url }}">Read more</a></div>
@@ -33,3 +42,10 @@
 {% endif %}
 
 {% endblock content %}
+{% block script_hooks %}
+<script>
+$(function () {
+    $("article img:first-child").addClass("featured");
+});
+</script>
+{% endblock %}
