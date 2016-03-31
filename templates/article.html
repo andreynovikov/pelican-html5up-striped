@@ -51,20 +51,28 @@
     }
 </style>
 <script>
-// display image caption on top of image
 $("article img").each(function() {
-  var imageCaption = $(this).attr("alt");
-  if (imageCaption != '') {
-    $(this).load(function() {
-      var imgWidth = $(this).width() - 5;
-      var imgHeight = $(this).height();
+  $(this).load(function() {
+    var imgWidth = $(this).width();
+    var imgHeight = $(this).height();
+    if (imgHeight > imgWidth) {
+      $(this).css({
+        "width": "60%",
+        "margin": "0 auto"
+      });
+    }
+    var imageCaption = $(this).attr("alt");
+    if (imageCaption != '') {
+      // display image caption on top of image
+      imgWidth = imgWidth - 5;
       var positionTop = imgHeight - 26;
       $("<span class='img-caption'>" + imageCaption + "</span>").css({
           "top": positionTop + "px",
           "width": imgWidth + "px"
       }).insertAfter(this);
-    });
-  }
+    }
+  });
+  if (this.complete) $(this).trigger("load");
 });
 </script>
 {% endblock %}
