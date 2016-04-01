@@ -8,7 +8,7 @@
 {% block content %}
 {% if articles %}
 {% for article in articles_page.object_list %}
-<article id="{{ article.slug }}" class="box post post-excerpt">
+<article id="{{ article.slug }}" class="box post post-excerpt"{% if article.lang and DEFAULT_LANG != article.lang %} lang="{{article.lang}}"{% endif %}>
     {% include 'article_header.html' %}
     {% if article.image %}
     <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><img class="featured" src="{{ article.image }}" alt="" {% if article.imageposition %}style="object-position: 50% {{article.imageposition}}" {% endif %}/></a>

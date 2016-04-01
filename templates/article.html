@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-<article class="box post post-excerpt">
+<article class="box post post-excerpt"{% if article.lang and DEFAULT_LANG != article.lang %} lang="{{article.lang}}"{% endif %}>
     {% include 'article_header.html' %}
 
     {{ article.content }}
