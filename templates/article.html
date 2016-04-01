@@ -39,17 +39,6 @@
 {% endblock %}
 
 {% block script_hooks %}
-<style>
-    article p {
-      position: relative;
-    }
-    article .img-caption {
-      position: absolute;
-      left: 5px;
-      top: 5px;
-      text-shadow: 0px 0px 1px #FFF, 1px 1px 1px #FFF, 1px -1px 1px #FFF, -1px 1px 1px #FFF, -1px -1px 1px #FFF;
-    }
-</style>
 <script>
 $("article img").each(function() {
   $(this).load(function() {

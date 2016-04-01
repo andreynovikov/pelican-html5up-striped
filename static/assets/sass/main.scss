@@ -256,6 +256,20 @@
 			        line-height: 1.3em;
 			}
 		}
+
+                /* Image caption */
+
+                p {
+                        position: relative;
+                }
+
+                .img-caption {
+                        position: absolute;
+                        left: 5px;
+                        top: 5px;
+                        text-shadow: 0px 0px 1px #FFF, 1px 1px 1px #FFF, 1px -1px 1px #FFF, -1px 1px 1px #FFF, -1px -1px 1px #FFF;
+                }
+
         }
 
 /* Button */
@@ -531,6 +545,9 @@
                 }
 
                 &.text-style1 {
+		        header, h2 {
+			        display: inline;
+			}
                         .inner {
                                 position: relative;
                                 background-color: #272E39;

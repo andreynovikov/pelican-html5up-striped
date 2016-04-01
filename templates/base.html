@@ -56,7 +56,7 @@
             <!-- Avatar -->
 
             <!-- Logo -->
-            <h1 id="logo">{% if PROFILE_IMG_URL %}<img id="avatar" src="{{ PROFILE_IMG_URL }}"/>{% endif %}<a href="{{ SITEURL }}/">{{ SITENAME|upper }}{% if SITESUBTITLE %} <span>{{ SITESUBTITLE }}</span>{% endif %}</a></h1>
+            <h1 id="logo">{% if PROFILE_IMG_URL %}<img id="avatar" alt="Avatar" src="{{ PROFILE_IMG_URL }}"/>{% endif %}<a href="{{ SITEURL }}/">{{ SITENAME|upper }}{% if SITESUBTITLE %} <span>{{ SITESUBTITLE }}</span>{% endif %}</a></h1>
 
             <!-- Nav -->
             <nav id="nav">
@@ -93,12 +93,12 @@
             <!-- Tags -->
             <section class="box text-style1">
                 <div class="inner">
-                    <p>
-                        <strong>Tags:</strong>
+                    <header>
+                        <h2>Tags:</h2>
+                    </header>
                         {% for tag in tag_cloud %}
                         <a class="tag-{{ tag.1 }}" href="{{ SITEURL }}/{{ tag.0.url }}">{{ tag.0 }}</a>
                         {% endfor %}
-                    </p>
                 </div>
             </section>
             {% endif %}

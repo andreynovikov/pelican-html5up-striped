@@ -1325,29 +1325,38 @@ section, article {
   article > .inner > :last-child, article:last-child {
     margin-bottom: 0; }
 
-article span.tag:after {
-  content: ","; }
-article span.tag:last-child:after {
-  content: ""; }
-article img {
-  display: block;
-  width: 100%; }
-  article img.featured {
-    margin: 0 0 2em 0;
-    max-height: 400px;
-    object-fit: cover; }
-  article img.left {
-    float: left;
-    margin: 0 2em 2em 0; }
-  article img.centered {
-    margin: 0 auto;
-    width: auto; }
-article .highlight {
-  padding: 5px;
-  margin: 1em -5px; }
-  article .highlight pre {
-    font-family: 'Inconsolata', monospace;
-    line-height: 1.3em; }
+article {
+  /* Image caption */ }
+  article span.tag:after {
+    content: ","; }
+  article span.tag:last-child:after {
+    content: ""; }
+  article img {
+    display: block;
+    width: 100%; }
+    article img.featured {
+      margin: 0 0 2em 0;
+      max-height: 400px;
+      object-fit: cover; }
+    article img.left {
+      float: left;
+      margin: 0 2em 2em 0; }
+    article img.centered {
+      margin: 0 auto;
+      width: auto; }
+  article .highlight {
+    padding: 5px;
+    margin: 1em -5px; }
+    article .highlight pre {
+      font-family: 'Inconsolata', monospace;
+      line-height: 1.3em; }
+  article p {
+    position: relative; }
+  article .img-caption {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    text-shadow: 0px 0px 1px #FFF, 1px 1px 1px #FFF, 1px -1px 1px #FFF, -1px 1px 1px #FFF, -1px -1px 1px #FFF; }
 
 /* Button */
 input[type="button"],
@@ -1566,6 +1575,8 @@ article > ol {
     z-index: 1;
     text-shadow: none;
     color: #c8ccce; }
+.box.text-style1 header, .box.text-style1 h2 {
+  display: inline; }
 .box.text-style1 .inner {
   position: relative;
   background-color: #272E39;
