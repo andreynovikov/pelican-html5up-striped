@@ -559,6 +559,13 @@
                         }
                 }
 
+                &.blogroll, &.social-links {
+		        > * {
+			        padding-left: 1em;
+				padding-right: 1em;
+			}
+		}
+
                 & .tag-0 {
                         font-size: 130%;
                 }

@@ -1585,6 +1585,9 @@ article > ol {
   padding: 1.25em;
   line-height: 1.5em;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 0 0.25em 0 rgba(0, 0, 0, 0.25); }
+.box.blogroll > *, .box.social-links > * {
+  padding-left: 1em;
+  padding-right: 1em; }
 .box .tag-0 {
   font-size: 130%; }
 .box .tag-1 {
