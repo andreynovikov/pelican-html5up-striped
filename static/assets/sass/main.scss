@@ -228,12 +228,13 @@
 
 		img {
                         display: block;
-                        width: 100%;
+                        max-width: 100%;
 
 			&.featured {
                         	margin: 0 0 2em 0;
 				max-height: 400px;
 				object-fit: cover;
+				width: 100%;
 			}
 
                 	&.left {

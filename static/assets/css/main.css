@@ -1333,11 +1333,12 @@ article {
     content: ""; }
   article img {
     display: block;
-    width: 100%; }
+    max-width: 100%; }
     article img.featured {
       margin: 0 0 2em 0;
       max-height: 400px;
-      object-fit: cover; }
+      object-fit: cover;
+      width: 100%; }
     article img.left {
       float: left;
       margin: 0 2em 2em 0; }
