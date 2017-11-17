@@ -1345,6 +1345,8 @@ article {
     article img.centered {
       margin: 0 auto;
       width: auto; }
+    article img.halfsize {
+      max-width: 50%; }
   article .highlight {
     padding: 5px;
     margin: 1em -5px; }
@@ -2084,7 +2086,9 @@ article > ol {
 
   /* Content */
   article img.featured {
-    max-height: 250px; } }
+    max-height: 250px; }
+  article img.halfsize {
+    max-width: 80%; } }
 /* Mobile */
 @media screen and (max-width: 736px) {
   /* Basic */
@@ -2186,6 +2190,8 @@ article > ol {
 
   article img.featured {
     max-height: 150px; }
+  article img.halfsize {
+    max-width: 90%; }
 
   /* Sidebar */
   #sidebar {

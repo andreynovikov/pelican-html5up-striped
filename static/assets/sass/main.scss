@@ -246,6 +246,10 @@
                                 margin: 0 auto;
                                 width: auto;
                         }
+
+                        &.halfsize {
+                                max-width: 50%;
+                        }
                 }
 
 		.highlight {
@@ -1314,6 +1318,9 @@
 				    &.featured {
 					max-height: 250px;
 				    }
+				    &.halfsize {
+                              	    	max-width: 80%;
+				    }
 				}
 			}
         }
@@ -1471,6 +1478,9 @@
 				img {
 				    &.featured {
 					max-height: 150px;
+				    }
+				    &.halfsize {
+                              	    	max-width: 90%;
 				    }
 				}
 			}
