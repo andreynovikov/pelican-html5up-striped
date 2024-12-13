@@ -89,7 +89,7 @@
             {% if DISPLAY_TAGS_ON_SIDEBAR is not defined %}
             {% set DISPLAY_TAGS_ON_SIDEBAR = True %}
             {% endif %}
-            {% if 'tag_cloud' in PLUGINS and DISPLAY_TAGS_ON_SIDEBAR %}
+            {% if 'tag_cloud' is plugin_enabled and DISPLAY_TAGS_ON_SIDEBAR %}
             <!-- Tags -->
             <section class="box text-style1">
                 <div class="inner">
